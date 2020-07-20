@@ -1,24 +1,65 @@
 <script>
-    import { onMount, getContext } from "svelte";
     import WaterfallPixel from "./WaterfallPixel.svelte";
 
-    import WHALE from "../data/whale";
-
-    import { currentAnimal } from "../../appstate";
+    import VOICES from "../data/voices";
+    import { debug, currentAnimal, currentSpeed, CLEAR_LINE } from "../../appstate";
 
     const ANALYZER_COLS = 30;
     const ANALYZER_ROWS = 7;
+
+    const DRAW_SPEEDS = [0, 10, 25, 50, 60];
+
+    let canvas_buffer = new Array(ANALYZER_COLS * ANALYZER_ROWS).fill(0);
     let canvas_array = new Array(ANALYZER_COLS * ANALYZER_ROWS).fill(0);
+
     let pixel_container;
+    let update_x = 0;
+    let timer = undefined;
 
-    $: loadWaterfallPattern($currentAnimal.voice);
-
-    function loadWaterfallPattern(data) {
-        canvas_array = data;
+    $: {
+        if ($currentAnimal.voice === undefined) {
+            let voice = Math.floor(Math.random() * VOICES.length);
+            loadWaterfallPattern(VOICES[voice]);
+        } else loadWaterfallPattern($currentAnimal.voice);
     }
 
+    function drawColumn() {
+        for (let y = 0; y < ANALYZER_ROWS; y++) {
+            const offs = y * ANALYZER_COLS + update_x;
+            canvas_array[offs] = canvas_buffer[offs];
+        }
+        update_x++;
+        if (update_x < ANALYZER_COLS) {
+            if (timer) {
+                clearTimeout(timer);
+            }
+            timer = setTimeout(drawColumn, DRAW_SPEEDS[$currentSpeed]);
+        }
+    }
+
+    function loadWaterfallPattern(data) {
+        if (timer) {
+            clearTimeout(timer);
+        }
+        if ($currentSpeed > 0) {
+            update_x = 0;
+            canvas_buffer = data;
+            canvas_array = new Array(ANALYZER_COLS * ANALYZER_ROWS).fill(0);
+            drawColumn();
+        } else {
+            // instant draw
+            canvas_buffer = new Array(ANALYZER_COLS * ANALYZER_ROWS).fill(0);
+            canvas_array = data;
+        }
+    }
+
+    /* These are debug functions. */
+
     function dump() {
-        console.log(JSON.stringify(canvas_array));
+        console.log("array", JSON.stringify(canvas_array));
+    }
+    function clear() {
+        loadWaterfallPattern(CLEAR_LINE);
     }
 </script>
 
@@ -51,7 +92,7 @@
         bottom: -57px;
     }
 
-    button {
+    .panel {
         position: fixed;
         top: 0;
         left: 0;
@@ -66,4 +107,9 @@
     <div class="blinder-hack-2" />
     <div class="blinder-hack-3" />
 </div>
-<button on:click={dump}>Dump bitmap</button>
+{#if $debug}
+    <div class="panel">
+        <button on:click={dump}>Dump</button>
+        <button on:click={clear}>Clear</button>
+    </div>
+{/if}

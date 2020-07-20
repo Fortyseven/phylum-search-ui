@@ -1,5 +1,4 @@
 <script>
-    import { getContext } from "svelte";
     import SpeciesName from "./SpeciesName.svelte";
 
     import { currentAnimal } from "../../appstate";

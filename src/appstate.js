@@ -8,23 +8,28 @@ flow:
 
 */
 
-const SPEED = [
-    100,
-    500,
-    1500,
+export const SPEED = [
+    50,
+    250,
+    1100,
+    1800,
     0
-]
+];
 
-const STATE = { STOPPED: 0, RENDERING: 1, RENDERING_DONE: 2 }
+const DRAWING_STATE = { START: 1, INPROGRESS: 2, DONE: 0 }
 
-let debug = writable(true);
+let debug = writable(false);
 
-let currentAnimal = writable(ANIMALS["Myotis volans"]);
-let currentSpeed = writable(SPEED[0]);
+let currentAnimal = writable(ANIMALS["myotis volans"]);
 
-let state = writable(STATE.RENDERING);
+let currentSpeed = writable(0);
+
+let drawingState = writable(DRAWING_STATE.RENDERING);
 
 
 
 
-export { currentAnimal, debug };
+export { DRAWING_STATE, currentAnimal, currentSpeed, drawingState, debug };
+
+/* In lieu of a utils kitchen sink file, we can tuck this here for now. */
+export const CLEAR_LINE = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
