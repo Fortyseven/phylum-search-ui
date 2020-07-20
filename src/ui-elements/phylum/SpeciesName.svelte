@@ -1,5 +1,5 @@
 <script>
-    import { currentAnimal } from "../../app_store";
+    import { currentAnimal } from "../../appstate";
 </script>
 
 <style lang="scss">

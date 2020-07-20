@@ -3,7 +3,7 @@
 
     import ANIMALS from "./ui-elements/data/animals";
 
-    import { currentAnimal } from "./app_store";
+    import { currentAnimal } from "./appstate";
 
     let test_index = 0;
     let animal_total = Object.keys(ANIMALS).length;
