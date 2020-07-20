@@ -1,33 +1,26 @@
 <script>
     import PhylumSearch from "./ui-elements/PhylumSearch.svelte";
+
+    import ANIMALS from "./ui-elements/data/animals";
+
+    import { currentAnimal } from "./app_store";
+
+    let test_index = 0;
+    let animal_total = Object.keys(ANIMALS).length;
+    console.log("animal_total", animal_total);
+
+    setInterval(() => {
+        test_index++;
+        currentAnimal.set(ANIMALS[Object.keys(ANIMALS)[test_index % animal_total]]);
+    }, 100);
+
+    function onSwitch(key) {
+        console.log("changing");
+        currentAnimal.set(ANIMALS[key]);
+    }
 </script>
 
 <style>
-    :global(:root) {
-        --color-primary: orange;
-        --color-secondary: red;
-        --color-tertiary: white;
-        --color-waterfall-on: #ffff88;
-
-        --dim-ui-thickness: 5px;
-        --dim-ui-slant-angle: 35deg;
-        --dim-ui-slant-angle-neg: -35deg;
-    }
-
-    @font-face {
-        font-family: "klingon-font-old";
-        src: url("../assets/fonts/font-webfont.woff2") format("woff2"), url("../assets/fonts/font-webfont.woff") format("woff");
-        font-weight: normal;
-        font-style: normal;
-    }
-    @font-face {
-        font-family: "klingon-font";
-        src: url("../assets/fonts/sl_pixl_regular_v1-webfont.woff2") format("woff2"),
-            url("../assets/fonts/sl_pixl_regular_v1-webfont.woff") format("woff");
-        font-weight: normal;
-        font-style: normal;
-    }
-
     main {
         background-color: black;
         margin: auto;
@@ -44,10 +37,23 @@
         width: 100vw;
         height: 100vh;
     }
+    .panel {
+        position: absolute;
+        bottom: 0;
+        padding-bottom: 1rem;
+    }
 </style>
 
 <div class="container">
     <main>
         <PhylumSearch />
+        <div class="panel">
+            <button>START</button>
+            <button>STOP</button>
+            {#each Object.keys(ANIMALS) as key}
+                <button on:click={() => onSwitch(key)}>{key}</button>
+            {/each}
+        </div>
+
     </main>
 </div>

@@ -4,7 +4,7 @@
 
     import WHALE from "../data/whale";
 
-    import { currentAnimal } from "../app_store";
+    import { currentAnimal } from "../../app_store";
 
     const ANALYZER_COLS = 30;
     const ANALYZER_ROWS = 7;

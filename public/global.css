@@ -4,3 +4,27 @@ body {
     padding: 0;
     margin: 0;
 }
+
+ :root {
+    --color-primary: orange;
+    --color-secondary: red;
+    --color-tertiary: white;
+    --color-waterfall-on: #ffff88;
+    --dim-ui-thickness: 5px;
+    --dim-ui-slant-angle: 35deg;
+    --dim-ui-slant-angle-neg: -35deg;
+}
+
+@font-face {
+    font-family: "klingon-font-old";
+    src: url("../assets/fonts/font-webfont.woff2") format("woff2"), url("../assets/fonts/font-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "klingon-font";
+    src: url("../assets/fonts/sl_pixl_regular_v1-webfont.woff2") format("woff2"), url("../assets/fonts/sl_pixl_regular_v1-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
