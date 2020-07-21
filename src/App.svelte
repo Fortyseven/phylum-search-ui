@@ -11,10 +11,7 @@
     currentAnimal.set(null);
 
     onMount(() => {
-        frame_index = 0;
-        currentAnimal.set(ANIMALS[FRAMES[frame_index].key]);
-        drawingState.set(DRAWING_STATE.START);
-        currentSpeed.set(SPEED[FRAMES[frame_index].speed]);
+        startAnimation();
     });
 
     $: {
@@ -31,6 +28,13 @@
                 }
             });
         }
+    }
+
+    function startAnimation() {
+        frame_index = 0;
+        currentAnimal.set(ANIMALS[FRAMES[frame_index].key]);
+        drawingState.set(DRAWING_STATE.START);
+        currentSpeed.set(SPEED[FRAMES[frame_index].speed]);
     }
 
     function onSwitch(key) {
