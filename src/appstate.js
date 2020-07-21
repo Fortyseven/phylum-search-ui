@@ -5,8 +5,12 @@ import ANIMALS from "./data/animals";
 
 /*
 flow:
-    - currentAnimal changes
-
+    - load currentAnimal with next animal in frame list
+    - set drawingState to DRAWING_STATE.START
+    - root component loops, watching for changes
+    - animation plays elsewhere, resetting drawingState to 'DONE' (guess INPROGRESS is no longer used?)
+    - drawingState is DONE
+    - rinse, repeat
 */
 
 export const SPEED = [
@@ -26,8 +30,6 @@ let currentAnimal = writable(ANIMALS["myotis volans"]);
 let currentSpeed = writable(0);
 
 let drawingState = writable(DRAWING_STATE.RENDERING);
-
-
 
 
 export { DRAWING_STATE, currentAnimal, currentSpeed, drawingState, debug };
