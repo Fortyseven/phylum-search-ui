@@ -1,7 +1,7 @@
 <script>
     import WaterfallPixel from "./WaterfallPixel.svelte";
 
-    import VOICES from "../data/voices";
+    import VOICES from "../../data/voices";
     import { debug, currentAnimal, currentSpeed, CLEAR_LINE } from "../../appstate";
 
     const ANALYZER_COLS = 30;

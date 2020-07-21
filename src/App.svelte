@@ -1,8 +1,8 @@
 <script>
     import PhylumSearch from "./ui-elements/PhylumSearch.svelte";
 
-    import ANIMALS from "./ui-elements/data/animals";
-    import FRAMES from "./ui-elements/data/frames";
+    import ANIMALS from "./data/animals";
+    import FRAMES from "./data/frames";
 
     import { SPEED, debug, currentAnimal, drawingState, DRAWING_STATE, currentSpeed } from "./appstate";
     import { onMount } from "svelte";

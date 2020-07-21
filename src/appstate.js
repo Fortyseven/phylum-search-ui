@@ -1,6 +1,7 @@
-import ANIMALS from "./ui-elements/data/animals";
 import { writable } from "svelte/store";
 import { setContext } from "svelte";
+
+import ANIMALS from "./data/animals";
 
 /*
 flow:
