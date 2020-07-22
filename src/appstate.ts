@@ -14,11 +14,11 @@ flow:
 */
 
 export const SPEED: number[] = [
-    50,
-    250,
-    1100,
-    1800,
-    0
+    25,
+    500,
+    1000,
+    2300,
+    3000,
 ];
 
 enum DrawingState { START, INPROGRESS, DONE };

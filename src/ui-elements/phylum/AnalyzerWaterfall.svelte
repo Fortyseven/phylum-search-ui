@@ -7,7 +7,7 @@
     const ANALYZER_COLS: number = 30;
     const ANALYZER_ROWS: number = 7;
 
-    const DRAW_SPEEDS: number[] = [0, 10, 25, 50, 60];
+    const DRAW_SPEEDS: number[] = [0, 5, 25, 50, 50, 60];
 
     let canvas_buffer: number[] = new Array(ANALYZER_COLS * ANALYZER_ROWS).fill(0);
     let canvas_array: number[] = new Array(ANALYZER_COLS * ANALYZER_ROWS).fill(0);
