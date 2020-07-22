@@ -1,6 +1,6 @@
 import { writable, Writable } from "svelte/store";
 import { setContext } from "svelte";
-
+import AssetCache from "./asset-cache";
 import ANIMALS, { AnimalType } from "./data/animals";
 
 /*
@@ -33,8 +33,10 @@ let currentSpeed: Writable<number> = writable(0);
 
 let drawingState: Writable<DrawingState> = writable(DrawingState.DONE);
 
+let cache: Writable<AssetCache> = writable(new AssetCache());
 
-export { DrawingState, currentAnimal, currentSpeed, drawingState, debug };
+
+export { DrawingState, currentAnimal, currentSpeed, drawingState, debug, cache };
 
 /* In lieu of a utils kitchen sink file, we can tuck this here for now. */
 export const CLEAR_LINE = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
