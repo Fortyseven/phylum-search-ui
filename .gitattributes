@@ -1,0 +1,9 @@
+*.svelte diff
+*.json diff
+*.js diff
+*.ts diff
+*.md diff
+*.txt diff
+*.css diff
+*.scss diff
+*.html diff
