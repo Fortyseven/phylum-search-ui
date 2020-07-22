@@ -1,7 +1,15 @@
 <script lang="ts">
     import SpeciesName from "./SpeciesName.svelte";
 
-    import { currentAnimal } from "../../appstate";
+    import { currentAnimal, cache } from "../../appstate";
+
+    let animal_image_el;
+
+    $: {
+        if (animal_image_el) {
+            animal_image_el.style.backgroundImage = "url('" + $cache.getAsset($currentAnimal.image).src + "')";
+        }
+    }
 </script>
 
 <style lang="scss">
@@ -83,7 +91,7 @@
         {#if $currentAnimal.isFinal}
             <div class="copy">Match Profile on Humpback Whale</div>
         {/if}
-        <div class="animal-image" style="background-image:url('{$currentAnimal.image}')" />
+        <div bind:this={animal_image_el} class="animal-image" />
     </div>
     <div class="lower">
         <div class="speciesname" class:oneline={!$currentAnimal.isFinal}>
