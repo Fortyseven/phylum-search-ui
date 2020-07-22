@@ -23,8 +23,6 @@ export const SPEED: number[] = [
 
 enum DrawingState { START, INPROGRESS, DONE };
 
-// const DRAWING_STATE = { START: 1, INPROGRESS: 2, DONE: 0 }
-
 let debug: Writable<boolean> = writable(false);
 
 let currentAnimal: Writable<AnimalType> = writable(ANIMALS["myotis volans"]);
