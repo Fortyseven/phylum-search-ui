@@ -111,5 +111,6 @@
     <div class="panel">
         <button on:click={dump}>Dump</button>
         <button on:click={clear}>Clear</button>
+        Current speed: {$currentSpeed}
     </div>
 {/if}
