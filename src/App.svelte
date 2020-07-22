@@ -10,7 +10,6 @@
     import { AssetType } from "./asset-cache";
 
     let frame_index: number;
-    let audioref: any;
     let animation_started: boolean = false;
     let is_loading: boolean = true;
     let loading_complete = false;
