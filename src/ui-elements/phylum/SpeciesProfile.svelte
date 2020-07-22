@@ -87,7 +87,7 @@
     </div>
     <div class="lower">
         <div class="speciesname" class:oneline={!$currentAnimal.isFinal}>
-            <SpeciesName id="MySpeciesName" />
+            <SpeciesName />
         </div>
     </div>
     <div class="closer" />
