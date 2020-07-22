@@ -1,7 +1,7 @@
-import { writable } from "svelte/store";
+import { writable, Writable } from "svelte/store";
 import { setContext } from "svelte";
 
-import ANIMALS from "./data/animals";
+import ANIMALS, { AnimalType } from "./data/animals";
 
 /*
 flow:
@@ -13,7 +13,7 @@ flow:
     - rinse, repeat
 */
 
-export const SPEED = [
+export const SPEED: number[] = [
     50,
     250,
     1100,
@@ -21,18 +21,20 @@ export const SPEED = [
     0
 ];
 
-const DRAWING_STATE = { START: 1, INPROGRESS: 2, DONE: 0 }
+enum DrawingState { START, INPROGRESS, DONE };
 
-let debug = writable(false);
+// const DRAWING_STATE = { START: 1, INPROGRESS: 2, DONE: 0 }
 
-let currentAnimal = writable(ANIMALS["myotis volans"]);
+let debug: Writable<boolean> = writable(false);
 
-let currentSpeed = writable(0);
+let currentAnimal: Writable<AnimalType> = writable(ANIMALS["myotis volans"]);
 
-let drawingState = writable(DRAWING_STATE.RENDERING);
+let currentSpeed: Writable<number> = writable(0);
+
+let drawingState: Writable<DrawingState> = writable(DrawingState.DONE);
 
 
-export { DRAWING_STATE, currentAnimal, currentSpeed, drawingState, debug };
+export { DrawingState, currentAnimal, currentSpeed, drawingState, debug };
 
 /* In lieu of a utils kitchen sink file, we can tuck this here for now. */
 export const CLEAR_LINE = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]

@@ -1,5 +1,5 @@
-<script>
-    export let on = 0;
+<script lang="ts">
+    export let on: number = 0;
 
     function toggle() {
         on = on == 0 ? 1 : 0;

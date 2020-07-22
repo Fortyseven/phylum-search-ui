@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Analyzer from "./Analyzer.svelte";
 </script>
 

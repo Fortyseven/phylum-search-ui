@@ -1,23 +1,23 @@
-<script>
+<script lang="ts">
     import WaterfallPixel from "./WaterfallPixel.svelte";
-
     import VOICES from "../../data/voices";
+
     import { debug, currentAnimal, currentSpeed, CLEAR_LINE } from "../../appstate";
 
-    const ANALYZER_COLS = 30;
-    const ANALYZER_ROWS = 7;
+    const ANALYZER_COLS: number = 30;
+    const ANALYZER_ROWS: number = 7;
 
-    const DRAW_SPEEDS = [0, 10, 25, 50, 60];
+    const DRAW_SPEEDS: number[] = [0, 10, 25, 50, 60];
 
-    let canvas_buffer = new Array(ANALYZER_COLS * ANALYZER_ROWS).fill(0);
-    let canvas_array = new Array(ANALYZER_COLS * ANALYZER_ROWS).fill(0);
+    let canvas_buffer: number[] = new Array(ANALYZER_COLS * ANALYZER_ROWS).fill(0);
+    let canvas_array: number[] = new Array(ANALYZER_COLS * ANALYZER_ROWS).fill(0);
 
     let pixel_container;
-    let update_x = 0;
-    let timer = undefined;
+    let update_x: number = 0;
+    let timer: any = undefined;
 
     $: {
-        if ($currentAnimal.voice === undefined) {
+        if ($currentAnimal?.voice === undefined) {
             let voice = Math.floor(Math.random() * VOICES.length);
             loadWaterfallPattern(VOICES[voice]);
         } else loadWaterfallPattern($currentAnimal.voice);
@@ -37,7 +37,7 @@
         }
     }
 
-    function loadWaterfallPattern(data) {
+    function loadWaterfallPattern(data: number[]) {
         if (timer) {
             clearTimeout(timer);
         }

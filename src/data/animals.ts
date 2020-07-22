@@ -50,6 +50,13 @@
 
 
 
+export interface AnimalType {
+    name: string;
+    image: string;
+    voice?: number[];
+    isFinal?: boolean
+};
+
 // If there's no 'voice' field, the component will pick a random one from `voices.js`, otherwise
 // it will use the one provided.
 
@@ -57,7 +64,7 @@ export default {
     'myotis volans': { // long-legged bat
         name: 'Myotis volans',
         image: "./assets/images/myotis-volans.png",
-    },
+    } as AnimalType,
     'sebastes mystinus': { // blue rockfish
         name: 'Sebastes mystinus',
         image: "./assets/images/sebastes-mystinus.png",

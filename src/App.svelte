@@ -1,13 +1,15 @@
-<script>
+<script lang="ts">
     import PhylumSearch from "./ui-elements/PhylumSearch.svelte";
 
-    import ANIMALS from "./data/animals";
-    import FRAMES from "./data/frames";
+    import animals from "./data/animals";
+    import frames from "./data/frames";
 
-    import { SPEED, debug, currentAnimal, drawingState, DRAWING_STATE, currentSpeed } from "./appstate";
+    import { DrawingState, SPEED, debug, currentAnimal, drawingState, currentSpeed } from "./appstate";
     import { onMount } from "svelte";
 
-    let frame_index;
+    let frame_index: number;
+    let animation_started: boolean = false;
+
     currentAnimal.set(null);
 
     onMount(() => {
@@ -15,30 +17,33 @@
     });
 
     $: {
-        if ($drawingState === DRAWING_STATE.DONE) {
+        if (animation_started && $drawingState === DrawingState.DONE) {
             window.requestAnimationFrame(() => {
                 frame_index++;
-                if (frame_index < FRAMES.length) {
-                    if (!ANIMALS[FRAMES[frame_index].key]) {
-                        console.error("bad frame", FRAMES[frame_index].key);
+                if (frame_index < frames.length) {
+                    if (!animals[frames[frame_index].key]) {
+                        console.error("bad frame", frames[frame_index].key);
                     }
-                    currentAnimal.set(ANIMALS[FRAMES[frame_index].key]);
-                    currentSpeed.set(FRAMES[frame_index].speed);
-                    drawingState.set(DRAWING_STATE.START);
+                    currentAnimal.set(animals[frames[frame_index].key]);
+                    currentSpeed.set(frames[frame_index].speed);
+                    drawingState.set(DrawingState.START);
+                } else {
+                    animation_started = false;
                 }
             });
         }
     }
 
     function startAnimation() {
+        animation_started = true;
         frame_index = 0;
-        currentAnimal.set(ANIMALS[FRAMES[frame_index].key]);
-        drawingState.set(DRAWING_STATE.START);
-        currentSpeed.set(SPEED[FRAMES[frame_index].speed]);
+        currentAnimal.set(animals[frames[frame_index].key]);
+        drawingState.set(DrawingState.START);
+        currentSpeed.set(SPEED[frames[frame_index].speed]);
     }
 
-    function onSwitch(key) {
-        currentAnimal.set(ANIMALS[key]);
+    function onSwitch(key: string) {
+        currentAnimal.set(animals[key]);
     }
 </script>
 
@@ -71,11 +76,10 @@
         <PhylumSearch />
         {#if $debug}
             <div class="panel">
-                {#each Object.keys(ANIMALS) as key}
+                {#each Object.keys(animals) as key}
                     <button on:click={() => onSwitch(key)}>{key}</button>
                 {/each}
             </div>
         {/if}
-
     </main>
 </div>

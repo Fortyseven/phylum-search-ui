@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import SpeciesName from "./SpeciesName.svelte";
 
     import { currentAnimal } from "../../appstate";

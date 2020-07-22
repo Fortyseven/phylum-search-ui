@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import AnalyzerWaterfall from "./AnalyzerWaterfall.svelte";
 </script>
 
