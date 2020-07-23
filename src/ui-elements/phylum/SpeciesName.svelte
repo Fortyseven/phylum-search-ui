@@ -1,5 +1,36 @@
 <script lang="ts">
-    import { currentAnimal } from "../../appstate";
+    import { currentAnimal, drawingState, DrawingState, currentSpeed } from "../../appstate";
+
+    const SPEED = [0, 10, 40, 50, 60, 80];
+
+    let name_index: number = 0;
+    let speed: number = 0;
+    let output_buffer: string = "";
+
+    $: {
+        if ($currentAnimal?.name) {
+            if ($currentSpeed === 0) {
+                output_buffer = $currentAnimal.name;
+            } else {
+                speed = SPEED[$currentSpeed];
+                beginAnimation();
+            }
+        }
+    }
+
+    function beginAnimation() {
+        name_index = 0;
+        output_buffer = "";
+        setTimeout(stepName, speed);
+    }
+
+    function stepName() {
+        output_buffer += $currentAnimal.name[name_index];
+        name_index++;
+        if (name_index < $currentAnimal.name.length) {
+            setTimeout(stepName, speed);
+        }
+    }
 </script>
 
 <style lang="scss">
@@ -11,7 +42,7 @@
         width: 562px;
         height: 115px;
         padding-right: 150px;
-        font-size: 2.75rem;
+        font-size: 4rem;
         text-align: left;
         border-top: var(--dim-ui-thickness) solid var(--color-primary);
         &:before,
@@ -38,4 +69,4 @@
     }
 </style>
 
-<div class:oneline={!$currentAnimal.isFinal}>{$currentAnimal.name}</div>
+<div class:oneline={!$currentAnimal.isFinal}>{output_buffer}</div>

@@ -5,6 +5,7 @@
     import { DrawingState, currentAnimal, drawingState, currentSpeed, SPEED } from "../appstate";
 
     $: {
+        // each frame is allocated a certain amount of time to play, otherwise we move on
         if ($drawingState === DrawingState.START) {
             setTimeout(() => {
                 drawingState.set(DrawingState.DONE);
