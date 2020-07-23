@@ -17,15 +17,8 @@ body {
 }
 
 @font-face {
-    font-family: "klingon-font-old";
-    src: url("../assets/fonts/font-webfont.woff2") format("woff2"), url("../assets/fonts/font-webfont.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
     font-family: "klingon-font";
-    src: url("../assets/fonts/sl_pixl_regular_v1-webfont.woff2") format("woff2"), url("../assets/fonts/sl_pixl_regular_v1-webfont.woff") format("woff");
+    src: url("./assets/fonts/sl_pixl_regular_v1-webfont.woff2") format("woff2"), url("./assets/fonts/sl_pixl_regular_v1-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
