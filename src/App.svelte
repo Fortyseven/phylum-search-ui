@@ -17,10 +17,12 @@
 
     currentAnimal.set(null);
 
+    // --------------------------------------------
     onMount(() => {
         preloadAssets();
     });
 
+    // --------------------------------------------
     $: {
         if (loading_complete && animation_started && $drawingState === DrawingState.DONE) {
             window.requestAnimationFrame(() => {
@@ -39,6 +41,7 @@
         }
     }
 
+    // --------------------------------------------
     async function preloadAssets() {
         is_loading = true;
         for (let i in animals) {
@@ -50,10 +53,13 @@
         await $cache.loadAsset("./assets/audio/analysis.mp3", AssetType.AUDIO);
 
         loading_complete = true;
+        $cache.debug();
     }
 
+    // --------------------------------------------
     function startAnimation() {
         is_loading = false;
+
         animation_started = true;
         frame_index = 0;
 
@@ -65,6 +71,7 @@
         currentSpeed.set(SPEED[frames[frame_index].speed]);
     }
 
+    // --------------------------------------------
     function onSwitch(key: string) {
         currentAnimal.set(animals[key]);
     }
