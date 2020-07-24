@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { currentAnimal, drawingState, DrawingState, currentSpeed } from "../../appstate";
+    import { currentAnimal, currentSpeed } from "../../appstate";
 
     const SPEED = [0, 10, 40, 50, 60, 80];
 
