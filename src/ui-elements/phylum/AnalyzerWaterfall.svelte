@@ -7,14 +7,51 @@
     const ANALYZER_COLS: number = 30;
     const ANALYZER_ROWS: number = 7;
 
+    const SUCCESS_GRADIENT: string[] = [
+        "#009EB8",
+        "#00A2BD",
+        "#00A6C2",
+        "#00ABC7",
+        "#00AFCC",
+        "#00B3D1",
+        "#00B8D6",
+        "#00BCDB",
+        "#00C0E0",
+        "#00C5E5",
+        "#00C9EA",
+        "#00CDEF",
+        "#00D2F4",
+        "#00D6F9",
+        "#00DBFF",
+        "#11DDFF",
+        "#22DFFF",
+        "#33E2FF",
+        "#44E4FF",
+        "#55E7FF",
+        "#66E9FF",
+        "#77EBFF",
+        "#88EEFF",
+        "#99F0FF",
+        "#AAF3FF",
+        "#BBF5FF",
+        "#CCF7FF",
+        "#DDFAFF",
+        "#EEFCFF",
+        "#FFFFFF",
+    ];
+
     const DRAW_SPEEDS: number[] = [0, 5, 25, 50, 50, 60];
 
     let canvas_buffer: number[] = new Array(ANALYZER_COLS * ANALYZER_ROWS).fill(0);
     let canvas_array: number[] = new Array(ANALYZER_COLS * ANALYZER_ROWS).fill(0);
+    let canvas_color_cols: string[] = new Array(ANALYZER_COLS).fill(0);
 
     let pixel_container;
     let update_x: number = 0;
     let timer: any = undefined;
+    let timer_cycle: any = undefined;
+    let cycle_index: number = 0;
+    let show_success: boolean = false;
 
     $: {
         if ($currentAnimal?.voice === undefined) {
@@ -30,10 +67,28 @@
         }
         update_x++;
         if (update_x < ANALYZER_COLS) {
+            // finished
             if (timer) {
                 clearTimeout(timer);
             }
             timer = setTimeout(drawColumn, DRAW_SPEEDS[$currentSpeed]);
+        } else {
+            startCycleTimer();
+        }
+    }
+
+    function startCycleTimer() {
+        // if we're on the final animal, start the color cycling
+        if ($currentAnimal.isFinal && !timer_cycle) {
+            console.log("how can this be?!");
+            show_success = true;
+            timer_cycle = setInterval(() => {
+                cycle_index++;
+                for (let x = 0; x < ANALYZER_COLS; x++) {
+                    let index = (x + cycle_index) % ANALYZER_COLS;
+                    canvas_color_cols[ANALYZER_COLS - x] = SUCCESS_GRADIENT[index];
+                }
+            }, 40);
         }
     }
 
@@ -100,8 +155,8 @@
 </style>
 
 <div class="waterfall" bind:this={pixel_container}>
-    {#each canvas_array as x}
-        <WaterfallPixel bind:on={x} />
+    {#each canvas_array as x, index}
+        <WaterfallPixel bind:on={x} success={show_success} success_color={canvas_color_cols[index % ANALYZER_COLS]} />
     {/each}
     <div class="blinder-hack" />
     <div class="blinder-hack-2" />
