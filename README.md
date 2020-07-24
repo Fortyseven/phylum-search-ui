@@ -1,6 +1,6 @@
 # Phylum Search UI Recreation
 
-This is an attempt to recreate the 'phylum search mode' UI from Star Trek IV: The Voyage Home. This is where the crew are trying to figure out what that creature is the disruptive probe is trying to contact.
+This is a recreation of the 'phylum search mode' UI from Star Trek IV: The Voyage Home. This is where the crew are trying to figure out what that creature is the disruptive probe is trying to contact.
 
 Here's the scene in question: https://streamable.com/eo15q6
 
@@ -9,6 +9,8 @@ This is a WIP that was mainly so I could learn how to use [Svelte](https://svelt
 Uploading this unfinished version so I have it safe while I continue working on it. Hoping to get the entire sequence implemented,including audio. 😎
 
 Enjoy!
+
+<img src="docs/search.gif"/>
 
 ## Analyze the whale song, yourself
 
