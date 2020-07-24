@@ -80,7 +80,6 @@
     function startCycleTimer() {
         // if we're on the final animal, start the color cycling
         if ($currentAnimal.isFinal && !timer_cycle) {
-            console.log("how can this be?!");
             show_success = true;
             timer_cycle = setInterval(() => {
                 cycle_index++;
