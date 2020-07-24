@@ -18,11 +18,10 @@ https://fortyseven.xyz/projects/phylum-search/
 
 - Code by me.
 - Graphics sourced from all over the internet, as one does.
-- Amazing _"Whale Probe Data Analysis"_ audio by thatSFXGuy on YouTube without permission because this is just a fun personal project inspired BY this audio. [1]
+- Amazing _"[Whale Probe Data Analysis](https://www.youtube.com/watch?v=eh7E-51doj8)"_ audio by thatSFXGuy on YouTube without permission because this is just a fun personal project inspired BY this audio.
   - I did a little bit of processing on it to fit the project, so I encourage you to check out the original.
   - _(And yeah, I probably should reach out to 'em at some point soon.)_
 
-[1]: https://www.youtube.com/watch?v=eh7E-51doj8
 
 ----
 
