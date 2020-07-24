@@ -6,6 +6,7 @@
     let name_index: number = 0;
     let speed: number = 0;
     let output_buffer: string = "";
+    let timer: any = null;
 
     $: {
         if ($currentAnimal?.name) {
@@ -21,14 +22,24 @@
     function beginAnimation() {
         name_index = 0;
         output_buffer = "";
-        setTimeout(stepName, speed);
+        if (timer) {
+            clearTimeout(timer);
+        }
+
+        timer = setTimeout(stepName, speed);
     }
 
     function stepName() {
-        output_buffer += $currentAnimal.name[name_index];
+        let char = $currentAnimal.name[name_index];
+
+        if (char === "\n") {
+            output_buffer += "<br/>";
+        } else {
+            output_buffer += $currentAnimal.name[name_index];
+        }
         name_index++;
         if (name_index < $currentAnimal.name.length) {
-            setTimeout(stepName, speed);
+            timer = setTimeout(stepName, speed);
         }
     }
 </script>
@@ -42,9 +53,10 @@
         width: 562px;
         height: 115px;
         padding-right: 150px;
-        font-size: 4rem;
+        font-size: 3.45rem;
         text-align: left;
         border-top: var(--dim-ui-thickness) solid var(--color-primary);
+        line-height: 1em;
         &:before,
         &:after {
             background-color: var(--color-primary);
@@ -69,4 +81,6 @@
     }
 </style>
 
-<div class:oneline={!$currentAnimal.isFinal}>{output_buffer}</div>
+<div class:oneline={!$currentAnimal.isFinal}>
+    {@html output_buffer}
+</div>
