@@ -10,6 +10,10 @@ Uploading this unfinished version so I have it safe while I continue working on 
 
 Enjoy!
 
+## Analyze the whale song, yourself
+
+https://fortyseven.xyz/projects/phylum-search/
+
 ## Credits
 
 - Code by me.
