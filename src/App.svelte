@@ -53,7 +53,6 @@
         await $cache.loadAsset("./assets/audio/analysis.mp3", AssetType.AUDIO);
 
         loading_complete = true;
-        $cache.debug();
     }
 
     // --------------------------------------------
