@@ -45,6 +45,7 @@
 <div class="container">
     <div>
         {#if !done_loading}
+            <h1>Importing Sol Zoological Database</h1>
             <h2>{asset_name || ''}</h2>
         {:else}
             On-board computer has successfully interfaced
